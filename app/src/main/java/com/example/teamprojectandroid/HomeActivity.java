@@ -2,6 +2,8 @@ package com.example.teamprojectandroid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationBarView;
@@ -31,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationBarView navigationBarView = findViewById(R.id.bottom_navigationview);
 
         return navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
