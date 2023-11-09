@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
 
         NavigationBarView navigationBarView = findViewById(R.id.bottom_navigationview);
 
-        navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        return navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -49,8 +49,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
                 return false;
             }
-        })
+        });
     }
-
 
 }
