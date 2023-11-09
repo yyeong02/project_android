@@ -29,23 +29,22 @@ public class HomeActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.containers, calFragment).commit();
 
         NavigationBarView navigationBarView = findViewById(R.id.bottom_navigationview);
-
-        return navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.cal:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.containers, calFragment).commit();
-                        return true;
-                    case R.id.medicine_box:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.containers, medicine_boxFragment).commit();
-                        return true;
-                    case R.id.phar:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.containers, pharFragment).commit();
-                        return true;
-                    case R.id.qna:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.containers, qnaFragment).commit();
-                        return true;
+                int itemId = item.getItemId();
+                if (itemId == R.id.cal) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.containers, calFragment).commit();
+                    return true;
+                } else if (itemId == R.id.medicine_box) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.containers, medicine_boxFragment).commit();
+                    return true;
+                } else if (itemId == R.id.phar) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.containers, pharFragment).commit();
+                    return true;
+                } else if (itemId == R.id.qna) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.containers, qnaFragment).commit();
+                    return true;
                 }
                 return false;
             }
