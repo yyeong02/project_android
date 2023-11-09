@@ -2,13 +2,12 @@ package com.example.teamprojectandroid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import com.google.android.material.navigation.NavigationBarView;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
-
-import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -30,11 +29,11 @@ public class HomeActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.containers, calFragment).commit();
 
         NavigationBarView navigationBarView = findViewById(R.id.bottom_navigationview);
+
         navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch(item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.cal:
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, calFragment).commit();
                         return true;
@@ -50,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
                 return false;
             }
-        });
+        })
     }
 
 

@@ -23,6 +23,6 @@
     <item
         android:id="@+id/qna"
         android:enabled="true"
-        android:title="Q&A"
+        android:title="Q&amp;A"
         app:showAsAction="always"/>
 </menu>

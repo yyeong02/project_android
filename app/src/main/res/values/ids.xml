@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="cal" />
+    <item type="id" name="medicine_box" />
+    <item type="id" name="phar" />
+    <item type="id" name="qna" />
+</resources>
