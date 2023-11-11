@@ -5,13 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".CalFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        android:text="Calendar" />
+        android:layout_height="match_parent">
+
+        <CalendarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/calendarView"
+            android:layout_alignParentTop="true"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerView"
+            android:layout_below="@+id/calendarView"
+            android:layout_margin="10dp"
+            android:paddingBottom="?attr/actionBarSize"/>
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/tvDateToday"-->
+<!--            android:layout_below="@+id/calendarView"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="20sp"/>-->
+
+    </RelativeLayout>
 
 </FrameLayout>

@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationBarView;
-import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -21,10 +19,22 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        String id = getIntent().getStringExtra("id");
+        String name = getIntent().getStringExtra("name");
+
+        Bundle bundle = new Bundle();
+        bundle.putString("id",id);
+        bundle.putString("name",name);
+
         calFragment = new CalFragment();
         medicine_boxFragment = new Medicine_boxFragment();
         pharFragment = new PharFragment();
         qnaFragment = new QNAFragment();
+
+        calFragment.setArguments(bundle);
+        medicine_boxFragment.setArguments(bundle);
+        pharFragment.setArguments(bundle);
+        qnaFragment.setArguments(bundle);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.containers, calFragment).commit();
 
