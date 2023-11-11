@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvItemMedicine"
+            android:text="탁센"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginRight="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvItemDate"
+            android:text="2023-03-01 ~ 2023-05-03"
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:layout_toRightOf="@id/tvItemMedicine"
+            android:layout_alignBottom="@id/tvItemMedicine"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvItemDetail1"
+            android:layout_weight="1"
+            android:text="아침"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvItemDetail2"
+            android:layout_weight="1"
+            android:text="점심"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvItemDetail3"
+            android:layout_weight="1"
+            android:text="저녁"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvItemDetail4"
+            android:layout_weight="1"
+            android:text="식전 30분"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvItemDetail5"
+            android:layout_weight="1"
+            android:text="식후 30분"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvItemMemo"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus euismod est convallis, ultrices dui non, hendrerit erat."
+        android:textSize="16sp"/>
+
+</LinearLayout>
