@@ -12,10 +12,10 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-//        MapView mapView = new MapView(this);
-//
-//        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
-//        mapViewContainer.addView(mapView);
+        MapView mapView = new MapView(this);
+
+        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
+        mapViewContainer.addView(mapView);
     }
 }
 
