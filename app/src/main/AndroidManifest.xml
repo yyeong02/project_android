@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.teamprojectandroid">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -40,6 +41,7 @@
             android:name=".MapActivity"
             android:exported="true">
         </activity>
-        <meta-data android:name="com.kakao.sdk.AppKey" android:value="4e0ede10f7b172c36c7fe35e1f19bb90"/>
+        <meta-data android:name="com.kakao.sdk.AppKey"
+                   android:value="4e0ede10f7b172c36c7fe35e1f19bb90"/>
     </application>
 </manifest>
