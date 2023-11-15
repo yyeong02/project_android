@@ -2,8 +2,14 @@ package com.example.teamprojectandroid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.google.android.material.navigation.NavigationBarView;
 
 
@@ -13,11 +19,14 @@ public class HomeActivity extends AppCompatActivity {
     Medicine_boxFragment medicine_boxFragment;
     PharFragment pharFragment;
     QNAFragment qnaFragment;
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        context = this;
 
         String id = getIntent().getStringExtra("id");
         String name = getIntent().getStringExtra("name");
@@ -59,6 +68,11 @@ public class HomeActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void refreshCal(){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.detach(calFragment).attach(calFragment).commit();
     }
 
 }

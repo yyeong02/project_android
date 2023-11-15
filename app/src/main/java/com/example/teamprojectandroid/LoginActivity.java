@@ -47,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
                                 String id = jsonResponse.getString("id");
                                 String name = jsonResponse.getString("name");
 
+                                Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                 intent.putExtra("id", id);
                                 intent.putExtra("name", name);
