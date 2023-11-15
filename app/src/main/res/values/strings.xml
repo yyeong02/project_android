@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TeamprojectAndroid</string>
+    <string name="medicine_box_label">Medicine Box</string>
+    <string name="pharmacy_label">Pharmacy</string>
 </resources>
