@@ -164,6 +164,78 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/containerLayout3"
+            android:background="#A69FD6"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="40dp"
+                android:text="지도"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:gravity="center_vertical"
+                android:layout_weight="8"/>
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_down"
+                android:layout_marginRight="40dp"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/contentLayout3"
+            android:layout_marginHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="25dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Q. 폐의약품 수거함을 어떻게 찾을 수 있나요?"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A. 지도 탭에서 폐의약품 수거함의 지역을 선택하면, 해당 지역의 폐의약품 수거함의 위치를 확인할 수 있습니다."
+                android:textSize="15sp"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Q. 약국 정보를 어떻게 찾을 수 있나요?"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A. 지도 탭에서 약국의 지역을 선택하면, 해당 지역의 약국의 위치를 확인할 수 있습니다."
+                android:textSize="15sp"
+                android:layout_marginBottom="8dp"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </FrameLayout>

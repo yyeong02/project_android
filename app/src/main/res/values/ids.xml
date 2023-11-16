@@ -2,6 +2,5 @@
 <resources>
     <item type="id" name="cal" />
     <item type="id" name="medicine_box" />
-    <item type="id" name="phar" />
     <item type="id" name="qna" />
 </resources>

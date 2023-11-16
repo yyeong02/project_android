@@ -15,12 +15,6 @@
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/phar"
-        android:enabled="true"
-        android:title="약국 찾기"
-        app:showAsAction="always"/>
-
-    <item
         android:id="@+id/qna"
         android:enabled="true"
         android:title="Q&amp;A"

@@ -12,13 +12,53 @@
         android:textSize="30sp"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:text="@string/medicine_box_label"/>
+        android:text="FIND"/>
 
-    <Spinner
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:entries="@array/spinner_array"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="폐의약품 수거함"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="약국"
+            android:textStyle="bold"
+            android:layout_weight="2"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:entries="@array/spinner_array"
+            android:layout_weight="1"
+            android:textAlignment="center"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner2"
+            android:entries="@array/spinner_array2"
+            android:layout_weight="1"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/map_view"

@@ -25,7 +25,6 @@ public class HomeActivity extends AppCompatActivity {
 
     CalFragment calFragment;
     Medicine_boxFragment medicine_boxFragment;
-    PharFragment pharFragment;
     QNAFragment qnaFragment;
     public static Context context;
 
@@ -45,12 +44,10 @@ public class HomeActivity extends AppCompatActivity {
 
         calFragment = new CalFragment();
         medicine_boxFragment = new Medicine_boxFragment();
-        pharFragment = new PharFragment();
         qnaFragment = new QNAFragment();
 
         calFragment.setArguments(bundle);
         medicine_boxFragment.setArguments(bundle);
-        pharFragment.setArguments(bundle);
         qnaFragment.setArguments(bundle);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.containers, calFragment).commit();
@@ -65,9 +62,6 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 } else if (itemId == R.id.medicine_box) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.containers, medicine_boxFragment).commit();
-                    return true;
-                } else if (itemId == R.id.phar) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.containers, pharFragment).commit();
                     return true;
                 } else if (itemId == R.id.qna) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.containers, qnaFragment).commit();

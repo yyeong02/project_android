@@ -21,7 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class QNAFragment extends Fragment {
 
-    LinearLayout containerLayout1, containerLayout2, contentLayout1, contentLayout2;
+    LinearLayout containerLayout1, containerLayout2, containerLayout3, contentLayout1, contentLayout2, contentLayout3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class QNAFragment extends Fragment {
 
         containerLayout1.setOnClickListener(this::onClick);
         containerLayout2.setOnClickListener(this::onClick);
+        containerLayout3.setOnClickListener(this::onClick);
 
         return v;
     }
@@ -39,8 +40,10 @@ public class QNAFragment extends Fragment {
     private void initUI(View v){
         containerLayout1 = (LinearLayout) v.findViewById(R.id.containerLayout1);
         containerLayout2 = (LinearLayout) v.findViewById(R.id.containerLayout2);
+        containerLayout3 = (LinearLayout) v.findViewById(R.id.containerLayout3);
         contentLayout1 = (LinearLayout) v.findViewById(R.id.contentLayout1);
         contentLayout2 = (LinearLayout) v.findViewById(R.id.contentLayout2);
+        contentLayout3 = (LinearLayout) v.findViewById(R.id.contentLayout3);
     }
 
     public void onClick(View v){
@@ -48,9 +51,11 @@ public class QNAFragment extends Fragment {
         if (id == R.id.containerLayout1) {
             if (contentLayout1.getVisibility() == v.VISIBLE)
                 contentLayout1.setVisibility(v.GONE);
+
             else {
                 contentLayout1.setVisibility(v.VISIBLE);
                 contentLayout2.setVisibility(v.GONE);
+                contentLayout3.setVisibility(v.GONE);
             }
         } else if (id == R.id.containerLayout2) {
             if (contentLayout2.getVisibility() == v.VISIBLE)
@@ -58,6 +63,15 @@ public class QNAFragment extends Fragment {
             else {
                 contentLayout1.setVisibility(v.GONE);
                 contentLayout2.setVisibility(v.VISIBLE);
+                contentLayout3.setVisibility(v.GONE);
+            }
+        } else if (id == R.id.containerLayout3) {
+            if (contentLayout3.getVisibility() == v.VISIBLE)
+                contentLayout3.setVisibility(v.GONE);
+            else {
+                contentLayout1.setVisibility(v.GONE);
+                contentLayout2.setVisibility(v.GONE);
+                contentLayout3.setVisibility(v.VISIBLE);
             }
         }
     }

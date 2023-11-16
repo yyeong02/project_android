@@ -36,10 +36,11 @@ import java.util.HashMap;
 public class Medicine_boxFragment extends Fragment {
 
     RelativeLayout mapViewContainer;
-    Spinner spinner;
-    String state;
-    JSONObject jsonObject, object;
-    JSONArray array;
+    Spinner spinner, spinner2;
+    String state,state2;
+    int selected=0, selected2=0;
+    JSONObject jsonObject, object, jsonObject2, object2;
+    JSONArray array, array2;
     MapPOIItem marker;
 
     @Override
@@ -48,6 +49,7 @@ public class Medicine_boxFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_medicine_box, container, false);
 
         spinner = v.findViewById(R.id.spinner);
+        spinner2 = v.findViewById(R.id.spinner2);
         state = "중구";
 
 
@@ -80,6 +82,34 @@ public class Medicine_boxFragment extends Fragment {
 
 
 
+        String json2="";
+        try{
+            InputStream is2 = getResources().getAssets().open("jsons/getdataphar.json");
+            int fileSize2 = is2.available();
+
+            byte[] buffer2 = new byte[fileSize2];
+            is2.read(buffer2);
+            is2.close();
+
+            json2 = new String(buffer2, "UTF-8");
+            Log.d("--  json2 = ", json2);
+
+            jsonObject2 = new JSONObject(json2);
+
+            array2 = jsonObject2.getJSONArray("data2");
+            for(int i=0;i<array2.length();i++){
+                object2 = array2.getJSONObject(i);
+                Log.d("--  gu : ", object.getString("gu"));
+                Log.d("--  name : ", object.getString("name"));
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+
+
         MapView mapView = new MapView(getActivity());
         mapView.setZoomLevel(4,true);
         ViewGroup mapViewContainer = (ViewGroup) v.findViewById(R.id.map_view);
@@ -91,6 +121,8 @@ public class Medicine_boxFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                selected=1;
+                selected2=0;
                 mapView.removeAllPOIItems();
                 state = adapterView.getItemAtPosition(position).toString();
                 ArrayList<MapPOIItem> markerArray = new ArrayList<>();
@@ -101,6 +133,32 @@ public class Medicine_boxFragment extends Fragment {
                             marker = new MapPOIItem();
                             marker.setMapPoint(MapPoint.mapPointWithGeoCoord(object.getDouble("latitude"), object.getDouble("longitude")));
                             marker.setItemName(object.getString("name"));
+                            markerArray.add(marker);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                mapView.addPOIItems(markerArray.toArray(new MapPOIItem[markerArray.size()]));
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                mapView.removeAllPOIItems();
+                state2 = adapterView.getItemAtPosition(position).toString();
+                ArrayList<MapPOIItem> markerArray = new ArrayList<>();
+                try{
+                    for(int i=0;i<array2.length();i++){
+                        object2 = array2.getJSONObject(i);
+                        if(object2.getString("gu").equals(state2)){
+                            marker = new MapPOIItem();
+                            marker.setMapPoint(MapPoint.mapPointWithGeoCoord(object2.getDouble("coordLat"), object2.getDouble("coordLon")));
+                            marker.setItemName(object2.getString("name"));
                             markerArray.add(marker);
                         }
                     }
