@@ -1,11 +1,14 @@
 package com.example.teamprojectandroid;
 
+import static com.kakao.util.maps.helper.Utility.getKeyHash;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+       Log.d("GET_KEYHASH",getKeyHash(this));
 
         moveToHome(3000);
     }
