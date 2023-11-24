@@ -1,12 +1,20 @@
 package com.example.teamprojectandroid;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -15,12 +23,22 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.Text;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +52,12 @@ public class PopupToAddActivity extends AppCompatActivity {
     ImageButton btnAddStartdate, btnAddFinishdate;
     CheckBox checkBoxAddDetail1, checkBoxAddDetail2, checkBoxAddDetail3, checkBoxAddDetail4, checkBoxAddDetail5;
     Button btnAddCancel, btnAddSave;
+
+    FloatingActionButton floatingActionButton;
+    Bitmap bitmap;
+    ImageView imageView;
+    TextRecognizer recognizer;
+    String resultText ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +150,65 @@ public class PopupToAddActivity extends AppCompatActivity {
                 queue.add(calAddRequest);
             }
         });
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                activityResultPicture.launch(intent);
+            }
+        });
     }
+
+    ActivityResultLauncher<Intent> activityResultPicture = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        public void onActivityResult(ActivityResult result) {
+            if( result.getResultCode() == RESULT_OK && result.getData() != null){
+                Bundle extras = result.getData().getExtras();
+                bitmap = (Bitmap) extras.get("data");
+                imageView.setImageBitmap(bitmap);
+                InputImage image = InputImage.fromBitmap(bitmap, 0);
+                Task<Text> t = recognizer.process(image)
+                        .addOnSuccessListener(new OnSuccessListener<Text>() {
+                            @Override
+                            public void onSuccess(Text text) {
+                                float size = 0;
+                                float boxSize = 0;
+
+                                for(Text.TextBlock block : text.getTextBlocks()){
+                                    if(size==0){
+                                        resultText = block.getText();
+                                        Rect box = block.getBoundingBox();
+                                        boxSize = box.bottom - box.top;
+                                        size = boxSize;
+
+                                        if(resultText.contains("아침")) checkBoxAddDetail1.setChecked(true);
+                                        if(resultText.contains("점심")) checkBoxAddDetail2.setChecked(true);
+                                        if(resultText.contains("저녁")) checkBoxAddDetail3.setChecked(true);
+                                    }else{
+                                        String t = block.getText();
+                                        Rect box = block.getBoundingBox();
+                                        boxSize = box.bottom - box.top;
+                                        if(boxSize>size){
+                                            size = boxSize;
+                                            resultText = block.getText();
+                                        }
+                                        if(t.contains("아침")) checkBoxAddDetail1.setChecked(true);
+                                        if(t.contains("점심")) checkBoxAddDetail2.setChecked(true);
+                                        if(t.contains("저녁")) checkBoxAddDetail3.setChecked(true);
+                                    }
+                                }
+
+                                etAddMedicine.setText(resultText);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
+            }
+        }
+    });
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -148,5 +230,8 @@ public class PopupToAddActivity extends AppCompatActivity {
         checkBoxAddDetail5 = (CheckBox) findViewById(R.id.checkBoxAddDetail5);
         btnAddCancel = (Button) findViewById(R.id.btnAddCancel);
         btnAddSave = (Button) findViewById(R.id.btnAddSave);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingBtn);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        recognizer = TextRecognition.getClient(new KoreanTextRecognizerOptions.Builder().build());
     }
 }
